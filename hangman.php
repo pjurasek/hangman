@@ -37,7 +37,7 @@ class Hangman
 
     public function isAlive()
     {
-        return $this->attempt < Hangman::ALLOWED_ATTEMPTS;
+        return Hangman::ALLOWED_ATTEMPTS > $this->attempt;
     }
 
     public function isGuessed()

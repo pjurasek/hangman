@@ -1,14 +1,14 @@
 <?php
 
-include('dictionary.php');
-include('hangman.php');
-include('graphics.php');
+include_once('dictionary.php');
+include_once('hangman.php');
+include_once('graphics.php');
 
 class Game
 {
-    public function start()
+    private function start()
     {
-        $dictionary = new Dictionary();
+        $dictionary = new Dictionary('/usr/share/dict/words');
         $hangman = new Hangman($dictionary->getRandomWord());
         $graphics = new Graphics();
 
@@ -35,12 +35,9 @@ class Game
         while(true) {
             $this->start();
             $input = readline("New game(y/n): ");
-            if ($input == 'n') {
+            if ('n' == $input) {
                 break;
             }
         }
     }
 }
-
-$Game = new Game();
-$Game->run();
