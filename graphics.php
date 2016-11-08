@@ -76,6 +76,10 @@ class Graphics
 
     public function drawPicture($number)
     {
-        print $this->asciiArt[$number] . PHP_EOL;
+        if (true === array_key_exits($number, $this->asciiArt)) {
+            print $this->asciiArt[$number] . PHP_EOL;
+        } else {
+            print 'No more pictures!' . PHP_EOL;
+        }
     }
 }
