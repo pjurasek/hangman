@@ -6,9 +6,17 @@ include_once('graphics.php');
 
 class Game
 {
+    /** @var  string */
+    private $dictionaryFilename;
+
+    public function __construct($dictionaryFilename = '/usr/share/dict/words')
+    {
+        $this->dictionaryFilename = $dictionaryFilename;
+    }
+
     private function start()
     {
-        $dictionary = new Dictionary('/usr/share/dict/words');
+        $dictionary = new Dictionary($this->dictionaryFilename);
         $hangman = new Hangman($dictionary->getRandomWord());
         $graphics = new Graphics();
 

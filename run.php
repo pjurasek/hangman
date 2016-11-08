@@ -2,5 +2,6 @@
 
 include_once('game.php');
 
-$game = new Game();
+$dictionary_filename = 'words';
+$game = new Game($dictionary_filename);
 $game->run();
