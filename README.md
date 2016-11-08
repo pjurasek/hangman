@@ -1,2 +1,7 @@
 # Hangman game
 This is implementation of Hangman game in PHP. As a dictionary use the linux usr/share/dict/words.
+
+Run it via command line:
+<code>
+$ php run.php
+</code>
