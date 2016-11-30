@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 12pt georgia;
+    color: #202020;
+    background-color:#ffffff;
+    margin: 0px;
+    text-align: left;
+}
+
+h1 {
+    font: italic normal 17pt georgia;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    color: #7D775C;
+}
+
+input[type=text] {
+    box-shadow: none;
+    box-radius: none;
+    border: none;
+}
+
+.container {
+    text-align: left;
+}

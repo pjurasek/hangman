@@ -9,6 +9,19 @@ class Game
     /** @var  string */
     private $dictionaryFilename;
 
+    /** @var  Dictionary */
+    private $dictionary;
+
+    /** @var  Hangman */
+    private $hangman;
+
+    /** @var  Graphics */
+    private $graphics;
+
+    /** @var int */
+    private $count;
+
+
     public function __construct($dictionaryFilename = '/usr/share/dict/words')
     {
         $this->dictionaryFilename = $dictionaryFilename;
@@ -16,36 +29,73 @@ class Game
 
     private function start()
     {
-        $dictionary = new Dictionary($this->dictionaryFilename);
-        $hangman = new Hangman($dictionary->getRandomWord());
-        $graphics = new Graphics();
+        $this->dictionary = new Dictionary($this->dictionaryFilename);
+        $this->hangman = new Hangman($this->dictionary->getRandomWord());
+        $this->graphics = new Graphics();
+        $this->count = 0;
 
-        while ($hangman->isAlive()) {
-            $graphics->drawPicture($hangman->state());
-            $hangman->drawWord();
+        $this->guess();
+    }
 
-            if ($hangman->isGuessed()) {
-                print "You win!" . PHP_EOL;
-                break;
-            }
+    private function guess()
+    {
+        $this->graphics->drawPicture($this->hangman->state());
+        $this->hangman->drawWord();
+        print "{$this->count}<br>";
+        var_dump('Guessed: ',$this->hangman->isGuessed(),'Alive: ', $this->hangman->isAlive());
+        $this->count++;
 
-            $input = readline("Guess: ");
-            $hangman->guess($input);
+        if ($this->hangman->isGuessed() && $this->hangman->isAlive()) {
+            print "You win!<br>";
         }
 
-        if (!$hangman->isGuessed()) {
-            print "Lose game" . PHP_EOL;
+        if (!$this->hangman->isGuessed() && !$this->hangman->isAlive()) {
+            print "You lose game!<br>";
+        }
+
+        if (!$this->hangman->isGuessed() && $this->hangman->isAlive()) {
+            $this->drawGuessInput();
+            $this->handleGuess();
+        }
+    }
+
+    private function handleGuess()
+    {
+        if(isset($_GET['guess'])) {
+            $input = $_GET['guess'];
+            $this->hangman->guess($input);
         }
     }
 
     public function run()
     {
-        while(true) {
+        if (isset($_GET['newGame']) && 'y' === $_GET['newGame']) {
             $this->start();
-            $input = readline("New game(y/n): ");
-            if ('n' == $input) {
-                break;
-            }
+        } else if(isset($_GET['guess']) && $this->hangman->isAlive()) {
+            $this->guess();
+        } else {
+            $this->drawMenu();
         }
     }
+
+    private function drawMenu()
+    {
+        print '
+            <form action="/">
+                <label>New game(y/n): </label>
+                <input type="text" name="newGame" autofocus value="">
+            </form>
+        ';
+    }
+
+    private function drawGuessInput()
+    {
+        print '
+            <form action="/">
+                <label>Guess: </label>
+                <input type="text" name="guess" autofocus value="">
+            </form>
+        ';
+    }
+
 }
