@@ -5,3 +5,8 @@ Run it via command line:
 <code>
 $ php run.php
 </code>
+
+The last version is run by web server:
+<code>
+$./run-server.sh
+</code>
