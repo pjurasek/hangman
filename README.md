@@ -10,3 +10,8 @@ The last version is run by web server:
 <code>
 $./run-server.sh
 </code>
+
+Open it in your browser:
+<code>
+http://localhost:8000
+</code>

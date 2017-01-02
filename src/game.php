@@ -47,6 +47,7 @@ class Game
             print nl2br($throwable->getMessage());
         }
 
+        $this->hangman->drawAlphabet();
         $this->graphics->drawPicture($this->hangman->state());
         $this->hangman->drawWord();
 

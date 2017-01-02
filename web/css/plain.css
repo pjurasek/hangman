@@ -26,3 +26,11 @@ input[type=text] {
 .container {
     text-align: left;
 }
+
+.shadow {
+    color: grey;
+}
+
+.blue {
+    color: blue;
+}
