@@ -6,11 +6,12 @@ class Dictionary
 
     /**
      * @param string $filename
+     * @throw Exception
      */
     public function __construct($filename)
     {
         if (false === ($this->dictionary = file($filename, FILE_IGNORE_NEW_LINES))) {
-            throw Exception('Can\'t read the dictionary: ' . $filename);
+            throw new Exception('Can\'t read the dictionary: ' . $filename);
         }
     }
 

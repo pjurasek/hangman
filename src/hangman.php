@@ -10,7 +10,7 @@ class Hangman
     public function __construct($secret)
     {
         $this->secret = strtolower($secret);
-        $this->template = str_repeat('-', strlen($secret));
+        $this->template = str_repeat('*', strlen($secret));
     }
 
     public function guess($character)
@@ -52,6 +52,6 @@ class Hangman
 
     public function drawWord()
     {
-        print $this->template . PHP_EOL;
+        print nl2br("Word: {$this->template}" . PHP_EOL);
     }
 }
