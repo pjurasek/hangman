@@ -2,20 +2,17 @@
 
 class Hangman
 {
-//    const ALLOWED_ATTEMPTS = 7;
     private $secret;
     private $attempt = 0;
     private $template;
     private $guessed = [];
-    private $alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i','j', 'k',
-                         'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                         'w', 'x', 'y', 'z'];
-
+    private $alphabet = [];
 
     public function __construct($secret)
     {
         $this->secret = strtolower($secret);
         $this->template = str_repeat('*', strlen($secret));
+        $this->alphabet = Configuration::ALPHABET;
     }
 
     public function guess($character)
@@ -69,7 +66,7 @@ class Hangman
             if (true === in_array($character, $this->guessed)) {
                 print "<span class=\"blue\">{$character}</span>";
             } else {
-                print "<span class=\"shadow\">{$character}</span>";
+                print "<span class=\"grey\">{$character}</span>";
             }
         }
         print nl2br(PHP_EOL);
