@@ -1,8 +1,8 @@
 <?php
 
-include_once('dictionary.php');
-include_once('hangman.php');
-include_once('graphics.php');
+include_once(__DIR__ . '/../Models/Dictionary.php');
+include_once(__DIR__ . '/../Models/Hangman.php');
+include_once(__DIR__ . '/../Models/Graphics.php');
 
 class Game
 {
@@ -92,22 +92,11 @@ class Game
 
     private function drawMenu()
     {
-        print '
-            <form action="/">
-                <label>New game(y/n): </label>
-                <input type="text" name="start" autofocus value="" maxlength="1">
-            </form>
-        ';
+        print file_get_contents(__DIR__ . '/../../templates/menu.html');
     }
 
     private function drawGuessInput()
     {
-        print '
-            <form action="/">
-                <label>Guess: </label>
-                <input type="text" name="guess" autofocus value="" maxlength="1">
-            </form>
-        ';
+        print file_get_contents(__DIR__ . '/../../templates/guess.html');
     }
-
 }

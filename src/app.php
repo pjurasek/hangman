@@ -1,6 +1,6 @@
 <?php
 
-include_once('game.php');
+include_once('Controllers/Game.php');
 
 session_start();
 

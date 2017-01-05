@@ -9,7 +9,7 @@
         <h1>Hang me on the tree!</h1>
         <div id="container">
         <?php
-            include_once(__DIR__ . '/../src/run.php');
+            include_once(__DIR__ . '/../src/app.php');
         ?>
         </div>
     </body>
