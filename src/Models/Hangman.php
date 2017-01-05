@@ -2,7 +2,7 @@
 
 class Hangman
 {
-    const ALLOWED_ATTEMPTS = 7;
+//    const ALLOWED_ATTEMPTS = 7;
     private $secret;
     private $attempt = 0;
     private $template;
@@ -44,7 +44,7 @@ class Hangman
 
     public function isAlive()
     {
-        return Hangman::ALLOWED_ATTEMPTS > $this->attempt;
+        return Configuration::MAX_BAD_ATTEMPTS_ALLOWED > $this->attempt;
     }
 
     public function isGuessed()
