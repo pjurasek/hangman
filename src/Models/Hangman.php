@@ -71,4 +71,9 @@ class Hangman
         }
         print nl2br(PHP_EOL);
     }
+
+    public function drawSecret()
+    {
+        print nl2br("Secret word was: {$this->secret}" . PHP_EOL);
+    }
 }

@@ -19,7 +19,7 @@ class Game
     private $graphics;
 
 
-    public function __construct($dictionaryFilename = '/usr/share/dict/words')
+    public function __construct($dictionaryFilename)
     {
         $this->dictionaryFilename = $dictionaryFilename;
     }
@@ -58,6 +58,9 @@ class Game
 
         if (!$this->hangman->isGuessed() && !$this->hangman->isAlive()) {
             print nl2br("You lose game!" . PHP_EOL);
+            if ('yes' === Configuration::DISPLAY_SECRET_WORD_FOR_LOSER) { 
+                print $this->hangman->drawSecret();
+            }
             $this->drawMenu();
         }
 
